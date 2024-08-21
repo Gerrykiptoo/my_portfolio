@@ -1,10 +1,172 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comments</title>
+    <!-- Load Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Load FontAwesome for star icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Load custom styles -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .star-rating {
+            font-size: 1.5rem;
+            color: #ffc107;
+            cursor: pointer;
+        }
+        .star-rating .fa-star {
+            margin-right: 5px;
+        }
+        .checked {
+            color: #ffc107;
+        }
+    </style>
 </head>
 <body>
-    <h1>Comments Page</h1>
-    <!-- Your content goes here -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Comments Page</h1>
+
+        <!-- Comment Form -->
+        <div class="card p-4 shadow-sm border-light">
+            <!-- Form for submitting a comment -->
+            <form action="{% url 'submit_comment' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="comment">Your Comment:</label>
+                    <textarea id="comment" name="comment" class="form-control" rows="4" placeholder="Enter your comment here..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rate our service:</label>
+                    <div id="rating" class="star-rating">
+                        <i class="fas fa-star" data-value="1"></i>
+                        <i class="fas fa-star" data-value="2"></i>
+                        <i class="fas fa-star" data-value="3"></i>
+                        <i class="fas fa-star" data-value="4"></i>
+                        <i class="fas fa-star" data-value="5"></i>
+                    </div>
+                    <input type="hidden" name="rating" id="rating-input">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg mt-3">Submit Comment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Load Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Star Rating Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const stars = document.querySelectorAll('.star-rating .fa-star');
+            const ratingInput = document.getElementById('rating-input');
+
+            stars.forEach(star => {
+                star.addEventListener('click', function () {
+                    const value = this.getAttribute('data-value');
+                    ratingInput.value = value;
+
+                    stars.forEach(s => s.classList.remove('checked'));
+                    for (let i = 0; i < value; i++) {
+                        stars[i].classList.add('checked');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments</title>
+    <!-- Load Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Load FontAwesome for star icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Load custom styles -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .star-rating {
+            font-size: 1.5rem;
+            color: #ffc107;
+            cursor: pointer;
+        }
+        .star-rating .fa-star {
+            margin-right: 5px;
+        }
+        .checked {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Comments Page</h1>
+
+        <!-- Comment Form -->
+        <div class="card p-4 shadow-sm border-light">
+            <!-- Form for submitting a comment -->
+            <form action="{% url 'submit_comment' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="comment">Your Comment:</label>
+                    <textarea id="comment" name="comment" class="form-control" rows="4" placeholder="Enter your comment here..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rate our service:</label>
+                    <div id="rating" class="star-rating">
+                        <i class="fas fa-star" data-value="1"></i>
+                        <i class="fas fa-star" data-value="2"></i>
+                        <i class="fas fa-star" data-value="3"></i>
+                        <i class="fas fa-star" data-value="4"></i>
+                        <i class="fas fa-star" data-value="5"></i>
+                    </div>
+                    <input type="hidden" name="rating" id="rating-input">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg mt-3">Submit Comment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Load Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Star Rating Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const stars = document.querySelectorAll('.star-rating .fa-star');
+            const ratingInput = document.getElementById('rating-input');
+
+            stars.forEach(star => {
+                star.addEventListener('click', function () {
+                    const value = this.getAttribute('data-value');
+                    ratingInput.value = value;
+
+                    stars.forEach(s => s.classList.remove('checked'));
+                    for (let i = 0; i < value; i++) {
+                        stars[i].classList.add('checked');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

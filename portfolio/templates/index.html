@@ -12,22 +12,58 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- Load Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Custom CSS for additional styling -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        .profile-section {
+            background: linear-gradient(120deg, #f0f0f0, #fff);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+        .profile-img {
+            max-width: 200px;
+            border: 5px solid #fff;
+        }
+        .card-body h5 {
+            font-weight: bold;
+        }
+        .skill-icon {
+            width: 80px;
+            margin-bottom: 1rem;
+        }
+        .contact-form {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        .btn-primary, .btn-success, .btn-secondary {
+            padding: 0.75rem 1.5rem;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body>
     <!-- Include Navbar -->
     {% include 'navbar.html' %}
 
-    <div class="container mt-5 text-center">
+    <div class="container mt-5">
         <!-- Profile Section -->
-        <div class="row mb-5 align-items-center bg-light p-4 rounded">
-            <div class="col-md-12 text-center">
+        <div class="row mb-5 align-items-center profile-section text-center">
+            <div class="col-md-12">
                 {% if profile.profile_image %}
                     <img src="{{ profile.profile_image.url }}" class="img-fluid rounded-circle mb-4 profile-img" alt="Profile Image">
                 {% else %}
                     <img src="{% static 'images/default-profile.png' %}" class="img-fluid rounded-circle mb-4 profile-img" alt="Default Profile Image">
                 {% endif %}
-                <h1>{{ profile.name }}</h1>
-                <h2>DevOps Engineer/Developer</h2>
+                <h1 class="section-title">{{ profile.name }}</h1>
+                <h2 class="text-muted">DevOps Engineer/Developer</h2>
                 <p class="lead">{{ profile.bio }}</p>
                 <a href="{% url 'contact' %}" class="btn btn-primary btn-lg mx-2">Get in Touch</a>
                 <a href="{% url 'hire_me' %}" class="btn btn-success btn-lg mx-2">Hire Now</a>
@@ -40,8 +76,8 @@
         </div>
 
         <!-- Projects Section -->
-        <div class="mb-5">
-            <h2>My Projects</h2>
+        <div class="mb-5 text-center">
+            <h2 class="section-title">My Projects</h2>
             <p>Here’s a showcase of some of my best work...</p>
             <div class="row">
                 {% for project in projects %}
@@ -64,11 +100,11 @@
         </div>
 
         <!-- Tech Skills Section -->
-        <div class="mb-5">
-            <h2>Tech Skills</h2>
-            <div class="row">
+        <div class="mb-5 text-center">
+            <h2 class="section-title">Tech Skills</h2>
+            <div class="row justify-content-center">
                 {% for skill in tech_skills %}
-                    <div class="col-sm-4 col-md-3 text-center mb-3">
+                    <div class="col-sm-4 col-md-3 text-center mb-4">
                         {% if skill.icon %}
                             <img src="{{ skill.icon.url }}" alt="{{ skill.name }} Icon" class="skill-icon">
                         {% else %}
@@ -83,10 +119,10 @@
 
         <!-- Comments Section -->
         <div class="mb-5">
-            <h2>Comments</h2>
+            <h2 class="section-title text-center">Comments</h2>
             <ul class="list-unstyled">
                 {% for comment in comments %}
-                    <li class="media mb-3">
+                    <li class="media mb-4 p-3 border rounded">
                         <div class="media-body">
                             <p><strong>{{ comment.name }}</strong>: {{ comment.message }}</p>
                             <small class="text-muted">{{ comment.created_at }}</small>
@@ -94,16 +130,20 @@
                     </li>
                 {% endfor %}
             </ul>
-            <a href="{% url 'comments' %}" class="btn btn-secondary btn-lg mt-3">View All Comments</a>
+            <div class="text-center">
+                <a href="{% url 'comments' %}" class="btn btn-secondary btn-lg mt-3">View All Comments</a>
+            </div>
         </div>
 
         <!-- Contact Section -->
-        <div>
-            <h2>Contact Me</h2>
+        <div class="contact-form mt-5">
+            <h2 class="section-title text-center">Contact Me</h2>
             <form action="{% url 'contact' %}" method="post">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button type="submit" class="btn btn-primary">Send</button>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg mt-3">Send</button>
+                </div>
             </form>
         </div>
     </div>

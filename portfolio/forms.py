@@ -14,3 +14,7 @@ class HireForm(forms.Form):
     message = forms.CharField(widget=forms.Textarea)
     project_description = forms.CharField(widget=forms.Textarea, required=False)  # Include this field
     
+    
+    
+    
+    

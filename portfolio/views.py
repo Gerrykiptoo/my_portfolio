@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Profile, TechSkill, Comment, Project, Testimonial, ContactMessage, HireMessage
 from .forms import ContactForm, HireForm  # Make sure HireForm is imported
+from django.http import HttpResponseRedirect
+from .models import Comment
+from .forms import CommentForm
+
 
 def index(request):
     profile = Profile.objects.first()
@@ -86,6 +90,22 @@ def tech_skills(request):
 def comments_view(request):
     # Logic for fetching and displaying comments
     return render(request, 'comments.html', {})
+
+
+def submit_comment(request):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the form data to the database
+            return HttpResponseRedirect('/success/')  # Redirect after successful submission
+    else:
+        form = CommentForm()
+
+    return render(request, 'comments.html', {'form': form})
+
+def success(request):
+    return render(request, 'success.html')
+
 
 
 
