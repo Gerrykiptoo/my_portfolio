@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerry Kiptoo - Full-Stack Software Engineer</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="#skills">Skills</a>
+            <a class="nav-link" href="#contact">Contact</a>
+        </nav>
+        
+        <div class="content">
+            <div class="text-section">
+                <h1 class="title">Hello, I am Gerry Kiptoo.</h1>
+                <h2 class="subtitle">A Full-Stack Software Engineer</h2>
+                <p class="description">
+                    As a seasoned Backend Developer and a DevOps Engineer, my journey in the tech world began with a strong foundation in information science and a passion for creating impactful software solutions.
+                </p>
+                <a href="{% url 'contact' %}" class="button">
+                    Contact Me
+                </a>
+            </div>
+            <img src="{% static 'images/profile-image.jpg' %}" alt="Gerry Kiptoo" class="profile-image">
+        </div>
+        
+        <section class="skills-section" id="skills">
+            <h3 class="skills-title">Tech Skills</h3>
+            <div class="skills">
+                <div class="skill">
+                    <img src="{% static 'images/html_and_css-icon.jpeg' %}" alt="HTML" class="skill-icon">
+                    <span class="skill-name">HTML</span>
+                </div>
+                <div class="skill">
+                    <img src="{% static 'images/html_and_css-icon.jpeg' %}" alt="CSS" class="skill-icon">
+                    <span class="skill-name">CSS</span>
+                </div>
+                <div class="skill">
+                    <img src="{% static 'images/mern-icon.png' %}" alt="JavaScript" class="skill-icon">
+                    <span class="skill-name">JavaScript</span>
+                </div>
+                <div class="skill">
+                    <img src="{% static 'images/mern-icon.png' %}" alt="React" class="skill-icon">
+                    <span class="skill-name">React</span>
+                </div>
+                <div class="skill">
+                    <img src="{% static 'images/python-icon.png' %}" alt="Python" class="skill-icon">
+                    <span class="skill-name">Python</span>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

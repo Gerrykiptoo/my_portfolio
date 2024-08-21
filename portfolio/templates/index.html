@@ -1,6 +1,5 @@
 {% load static %}
 {% load crispy_forms_tags %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,33 +10,75 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Load your custom stylesheet -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-5">
+    <!-- Include Navbar -->
+    {% include 'navbar.html' %}
+
+    <div class="container mt-5 text-center">
         <!-- Profile Section -->
-        <div class="row mb-5">
-            <div class="col-md-4 text-center">
-                <img src="{{ profile.profile_image.url }}" class="img-fluid rounded-circle" alt="Profile Image">
-            </div>
-            <div class="col-md-8">
+        <div class="row mb-5 align-items-center bg-light p-4 rounded">
+            <div class="col-md-12 text-center">
+                {% if profile.profile_image %}
+                    <img src="{{ profile.profile_image.url }}" class="img-fluid rounded-circle mb-4 profile-img" alt="Profile Image">
+                {% else %}
+                    <img src="{% static 'images/default-profile.png' %}" class="img-fluid rounded-circle mb-4 profile-img" alt="Default Profile Image">
+                {% endif %}
                 <h1>{{ profile.name }}</h1>
-                <p>{{ profile.bio }}</p>
+                <h2>DevOps Engineer/Developer</h2>
+                <p class="lead">{{ profile.bio }}</p>
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg mx-2">Get in Touch</a>
+                <a href="{% url 'hire_me' %}" class="btn btn-success btn-lg mx-2">Hire Now</a>
+                <p class="mt-4">
+                    <strong>Email:</strong> Gerry Biwott<br>
+                    <strong>Phone:</strong> 0703888085<br>
+                    <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/samuel-gichohi/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </p>
             </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="mb-5">
+            <h2>My Projects</h2>
+            <p>Here’s a showcase of some of my best work...</p>
+            <div class="row">
+                {% for project in projects %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm border-light">
+                            {% if project.image %}
+                                <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                            {% else %}
+                                <img src="{% static 'images/default-project.png' %}" class="card-img-top" alt="Default Project Image">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ project.title }}</h5>
+                                <p class="card-text">{{ project.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="{% url 'projects' %}" class="btn btn-secondary btn-lg mt-3">View All Projects</a>
         </div>
 
         <!-- Tech Skills Section -->
         <div class="mb-5">
             <h2>Tech Skills</h2>
-            <ul class="list-unstyled">
+            <div class="row">
                 {% for skill in tech_skills %}
-                    <li class="media mb-3">
-                        <img src="{{ skill.icon.url }}" class="mr-3" alt="{{ skill.name }} Icon" style="width: 50px; height: 50px;">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1">{{ skill.name }}</h5>
-                        </div>
-                    </li>
+                    <div class="col-sm-4 col-md-3 text-center mb-3">
+                        {% if skill.icon %}
+                            <img src="{{ skill.icon.url }}" alt="{{ skill.name }} Icon" class="skill-icon">
+                        {% else %}
+                            <img src="{% static 'images/default-icon.png' %}" alt="Default Icon" class="skill-icon">
+                        {% endif %}
+                        <h5>{{ skill.name }}</h5>
+                    </div>
                 {% endfor %}
-            </ul>
+            </div>
+            <a href="{% url 'tech_skills' %}" class="btn btn-secondary btn-lg mt-3">View All Skills</a>
         </div>
 
         <!-- Comments Section -->
@@ -53,6 +94,7 @@
                     </li>
                 {% endfor %}
             </ul>
+            <a href="{% url 'comments' %}" class="btn btn-secondary btn-lg mt-3">View All Comments</a>
         </div>
 
         <!-- Contact Section -->
@@ -60,12 +102,14 @@
             <h2>Contact Me</h2>
             <form action="{% url 'contact' %}" method="post">
                 {% csrf_token %}
-                {{ registerform|crispy }}
+                {{ form|crispy }}
                 <button type="submit" class="btn btn-primary">Send</button>
             </form>
         </div>
     </div>
 
+    <!-- Load FontAwesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <!-- Load Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

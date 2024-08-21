@@ -1,11 +1,10 @@
 {% load static %}
-{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Projects</title>
     <!-- Load Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Load your custom stylesheet -->
@@ -16,18 +15,23 @@
     {% include 'navbar.html' %}
 
     <div class="container mt-5">
-        <!-- Contact Section -->
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <h1 class="text-center mb-4">Contact Me</h1>
-                <div class="bg-light p-4 rounded shadow-sm">
-                    <form action="{% url 'contact' %}" method="post">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <button type="submit" class="btn btn-primary btn-lg mt-3">Send</button>
-                    </form>
+        <h1 class="text-center mb-4">Projects</h1>
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-light">
+                        {% if project.image %}
+                            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                        {% else %}
+                            <img src="{% static 'images/default-project.png' %}" class="card-img-top" alt="Default Project Image">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">{{ project.description }}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 

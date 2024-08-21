@@ -1,41 +1,32 @@
 {% load static %}
-{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-    <!-- Load Bootstrap CSS -->
+    <title>About Me</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Load your custom stylesheet -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <!-- Include Navbar -->
     {% include 'navbar.html' %}
 
     <div class="container mt-5">
-        <!-- Contact Section -->
-        <div class="row justify-content-center">
+        <h1>About Me</h1>
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img src="{{ profile.profile_image.url }}" class="img-fluid rounded-circle" alt="Profile Image">
+            </div>
             <div class="col-md-8">
-                <h1 class="text-center mb-4">Contact Me</h1>
-                <div class="bg-light p-4 rounded shadow-sm">
-                    <form action="{% url 'contact' %}" method="post">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <button type="submit" class="btn btn-primary btn-lg mt-3">Send</button>
-                    </form>
-                </div>
+                <h2>{{ profile.name }}</h2>
+                <p>{{ profile.bio }}</p>
             </div>
         </div>
     </div>
 
-    <!-- Load Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Load your custom JavaScript -->
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

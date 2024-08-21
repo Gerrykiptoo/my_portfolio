@@ -1,0 +1,253 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #EEF2F0;
+    color: #282828;
+}
+
+.container {
+    background-color: #22734b;
+    color: #EEF2F0;
+    padding: 50px 20px;
+    text-align: center;
+    min-height: 100vh;
+    border-radius: 10px;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    padding: 20px;
+    background-color: #5dc0c0;
+    font-size: 1.2rem;
+}
+
+.navbar a {
+    color: #282828;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Content Section Styles */
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    padding: 50px 0;
+}
+
+.text-section {
+    max-width: 500px;
+    text-align: left;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #282828;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.description {
+    margin: 20px 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.button {
+    background-color: #007BFF;
+    color: #FFF;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Profile Image Styles */
+.profile-image {
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    border: 5px solid #EEF2F0;
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* Skills Section Styles */
+.skills-section {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.skills-title {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.skills {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.skill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #282828;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100px;
+    height: 120px;
+    transition: transform 0.3s;
+}
+
+.skill:hover {
+    transform: scale(1.1);
+}
+
+.skill-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.skill-name {
+    color: #EEF2F0;
+    font-size: 0.9rem;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.close-button {
+    background: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background: #c62828;
+}
+
+/* Tech Skills Section */
+.tech-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.tech-skills img {
+    width: 50px;
+    height: 50px;
+}
+
+.tech-skills h5 {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: normal;
+}
+/* Add hover effect to buttons */
+.btn-primary, .btn-success {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #004d40;
+    color: #fff;
+}
+
+/* Increase spacing between sections */
+.container .mb-5 {
+    margin-bottom: 3rem !important;
+}
+
+/* Add subtle shadows to cards */
+.card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Improve typography */
+h1, h2, h5 {
+    font-family: 'Roboto', sans-serif; /* Example font */
+}
+
+p.lead {
+    line-height: 1.6;
+}
+
+/* Style images */
+img.profile-img, img.project-img {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+/* Style skill icons */
+.skill-icon {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 50px;
+    height: 50px;
+}
+
+/* Add a light background color to sections */
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+/* FontAwesome Icons */
+.fab {
+    font-size: 1.2rem;
+}

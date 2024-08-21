@@ -1,0 +1,88 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerry Biwott - Portfolio</title>
+    <!-- Load Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Load your custom stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Include Navbar -->
+    {% include 'navbar.html' %}
+
+    <div class="container mt-5 text-center">
+        <!-- Profile Section -->
+        <div class="row mb-5 align-items-center bg-light p-4 rounded">
+            <div class="col-md-12 text-center">
+                <img 
+                    src="{% static 'images/profile-image.jpg' %}" 
+                    alt="Gerry Biwott" 
+                    class="profile-image img-fluid rounded-circle mb-4"
+                />
+                <h1>Welcome to My Portfolio</h1>
+                <h2 class="title">Gerry Biwott, DevOps Engineer</h2>
+                <p class="description">
+                    I am Gerry Biwott, a seasoned Developer/DevOps engineer with over 3 years of experience in building scalable and efficient software solutions. I specialize in full-stack development and have a strong passion for creating impactful digital experiences.
+                </p>
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg mx-2">Get in Touch</a>
+                <a href="{% url 'hire_me' %}" class="btn btn-success btn-lg mx-2">Hire Now</a>
+                <div class="contact-info mt-4">
+                    <p><strong>Email:</strong> gerrykiptoo@gmail.com</p>
+                    <p><strong>Phone:</strong> 0703888085</p>
+                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/samuel-gichohi/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+                </div>
+                <p class="description mt-4">
+                    Thank you for visiting my portfolio. I look forward to the possibility of working with you and creating something amazing together.
+                </p>
+            </div>
+        </div>
+
+        <!-- Contact Modal -->
+        <div id="contact-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <h2>Contact Me</h2>
+                <form id="contact-form" method="POST" action="{% url 'contact' %}">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('contact-modal')">Close</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Hire Modal -->
+        <div id="hire-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <h2>Hire Me</h2>
+                <form id="hire-form" method="POST" action="{% url 'hire_me' %}">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn-success">Send</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('hire-modal')">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load FontAwesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Load Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Load your custom JavaScript -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
